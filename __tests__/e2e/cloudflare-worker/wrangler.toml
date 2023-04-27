@@ -1,0 +1,13 @@
+name = "segment-e2e-test-worker"
+main = "./worker/index.js"
+compatibility_date = "2022-05-03"
+
+kv_namespaces = [
+    { binding = "E2E", id = "9153590ed9634cb3b279fc80df537359", preview_id = "199168a5bba1491eb0a655ee25f28fab" }
+]
+
+[build]
+command = "npm run react:build"
+
+[site]
+bucket = "./build"

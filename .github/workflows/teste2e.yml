@@ -1,0 +1,35 @@
+name: Test e2e
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  test-e2e:
+    runs-on: ubuntu-20.04
+    name: Test e2e
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+
+      - name: Generate random paths
+        run: |
+          timestamp=$(date +%s)
+          echo TEST_ID=$timestamp >> $GITHUB_OUTPUT
+        id: random-path-generator
+      - name: Install dependencies
+        run: |
+          npx playwright install
+          yarn install
+      - name: Run test
+        run:  yarn test:e2e
+        env:
+          TEST_CLIENT_DOMAIN: ${{secrets.TEST_CLIENT_DOMAIN}}
+          TEST_ID: ${{steps.random-path-generator.outputs.TEST_ID}}
