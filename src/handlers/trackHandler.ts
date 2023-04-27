@@ -1,10 +1,10 @@
-import { FPJSSegmentIntegrationBody, MaybeNullOrUndefined, MaybeNullOrUndefined as NullOrUn } from '../types'
+import { FPJSSegmentIntegrationBody, MaybeNullOrUndefined as NullOrUn } from '../types'
 import { SegmentSpecTrack } from '../types/segment/specs/track'
 import '../types/segment'
 import { SegmentSpecWithUserId } from '../types/segment/utils/id'
 
 export function handleTrack(
-  track: MaybeNullOrUndefined<SegmentSpecTrack>,
+  track: NullOrUn<SegmentSpecTrack>,
   userId: NullOrUn<SegmentSpecWithUserId['userId']>,
   body: FPJSSegmentIntegrationBody
 ) {

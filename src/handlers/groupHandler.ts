@@ -1,10 +1,10 @@
-import { FPJSSegmentIntegrationBody, MaybeNullOrUndefined, MaybeNullOrUndefined as NullOrUn } from '../types'
+import { FPJSSegmentIntegrationBody, MaybeNullOrUndefined as NullOrUn } from '../types'
 import { SegmentSpecGroup } from '../types/segment/specs/group'
 import '../types/segment'
 import { SegmentSpecWithUserId } from '../types/segment/utils/id'
 
 export function handleGroup(
-  group: MaybeNullOrUndefined<SegmentSpecGroup>,
+  group: NullOrUn<SegmentSpecGroup>,
   userId: NullOrUn<SegmentSpecWithUserId['userId']>,
   body: FPJSSegmentIntegrationBody
 ) {
