@@ -11,8 +11,8 @@
   <a href="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/actions/workflows/build.yml">
     <img src="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/actions/workflows/build.yml/badge.svg" alt="Build status">
   </a>
-  <a href="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/coverage/">
-    <img src="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/coverage/badges.svg" alt="coverage">
+  <a href="https://fingerprintjs.github.io/fingerprint-pro-segment-source-function/coverage">
+    <img src="https://raw.githubusercontent.com/fingerprintjs/fingerprint-pro-segment-source-function/gh-pages/coverage/badges.svg" alt="coverage">
   </a>
   <a href="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/actions/workflows/release.yml">
     <img src="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/actions/workflows/release.yml/badge.svg" alt="Release status">
