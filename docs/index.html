@@ -28,94 +28,168 @@
    </a>
 </p>
 
-<blockquote>
-<p>:warning: <strong>Work in progress</strong>: This is a beta version of the library</p>
-</blockquote>
 
 <a href="#fingerprint-pro-segment-source-function" id="fingerprint-pro-segment-source-function" style="color: inherit; text-decoration: none;">
   <h1>Fingerprint Pro Segment Source Function</h1>
 </a>
 <p>Fingerprint provides a <a href="https://Segment.com/docs/connections/functions/source-functions/">Segment Source Function</a> that can be configured to use with <a href="https://dev.fingerprint.com/docs/js-agent">Fingerprint Pro JS Agent</a>.
-It is possible to send events for Segment destinations using this repository and JS Agent only. </p>
+It is possible to send events for Segment destinations using this repository and JS Agent only.</p>
+<p>Fingerprint Segment integration uses <a href="https://dev.fingerprint.com/docs/webhooks">Fingerprint Webhooks</a> to send data to Segment servers.</p>
 <blockquote>
 <p>:warning: Mobile platforms are currently not supported. Please contact support if you need help.</p>
 </blockquote>
 
-<a href="#how-to-use" id="how-to-use" style="color: inherit; text-decoration: none;">
-  <h2>How to use</h2>
+<a href="#how-to-set-up" id="how-to-set-up" style="color: inherit; text-decoration: none;">
+  <h2>How to set up</h2>
 </a>
 
 <a href="#create-a-segment-source-function" id="create-a-segment-source-function" style="color: inherit; text-decoration: none;">
   <h3>Create a Segment Source Function</h3>
 </a>
-<ul>
-<li>Login to your Segment account, go to Connections</li>
-<li>Select Catalog &gt; Functions &gt; Create Function (or New Function)</li>
-<li>Select Source, click Build</li>
-<li>Replace the source code with the Fingerprint Segment source function code from <a href="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js">here</a></li>
-<li>Click Configure, enter a descriptive name, such as &quot;FPJS Source Function&quot;.
-Optionally you can put description and logo. Click Create Function.</li>
-</ul>
-<p>Source function is successfully created!</p>
+<ol>
+<li>Log in to your Segment account, go to <strong>Connections</strong>.</li>
+<li>Select <strong>Catalog</strong> &gt; <strong>Functions</strong> &gt; <strong>Create Function</strong> (or <strong>New Function</strong>).</li>
+<li>Select <strong>Source</strong>, click <strong>Build</strong>.</li>
+<li>Replace the source code with the <a href="https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js">latest Fingerprint Segment source function</a>.</li>
+<li>Click <strong>Configure</strong>, and enter a descriptive name, such as &quot;FPJS Source Function&quot;.
+Optionally you can put a description and logo of your choice. Click <strong>Create Function</strong>.</li>
+</ol>
+<p>The source function is successfully created!</p>
 
 <a href="#create-a-segment-source-and-connect-it-to-the-function" id="create-a-segment-source-and-connect-it-to-the-function" style="color: inherit; text-decoration: none;">
   <h3>Create a Segment Source and connect it to the function</h3>
 </a>
-<ul>
-<li>Login to your Segment account, go to Connections</li>
-<li>Select Catalog &gt; Functions</li>
-<li>Select the source function previously created</li>
-<li>Select Connect Source</li>
-<li>Put a descriptive name, such as &quot;FPJS Source&quot;. You may optionally put labels.</li>
-<li>Click Continue</li>
+<ol>
+<li>Log in to your Segment account, go to <strong>Connections</strong>.</li>
+<li>Select <strong>Catalog</strong> &gt; <strong>Functions</strong>.</li>
+<li>Select the source function previously created.</li>
+<li>Select <strong>Connect Source</strong>.</li>
+<li>Put a descriptive name, such as &quot;FPJS Source&quot;. You may optionally put labels of your choice.</li>
+<li>Click <strong>Continue</strong>.</li>
 <li>You will see the webhook URL. Don&#39;t worry about this for now.</li>
-<li>Click Continue</li>
-<li>Click Finish</li>
-</ul>
-<p>Source is successfully created!</p>
+<li>Click <strong>Continue</strong>.</li>
+<li>Click <strong>Finish</strong>.</li>
+</ol>
+<p>The source is successfully created!</p>
 
 <a href="#connect-segment-source-with-fingerprint-account" id="connect-segment-source-with-fingerprint-account" style="color: inherit; text-decoration: none;">
   <h3>Connect Segment Source with Fingerprint Account</h3>
 </a>
-<ul>
-<li>Login to your Segment account, go to Connections</li>
-<li>Select Sources, select previously created Source. You should see the details of the source, along with webhook URL</li>
-<li>Copy the webhook URL</li>
-<li>Login to your Fingerprint account</li>
-<li>Go to App Settings &gt; Webhooks</li>
-<li>Click +Add Webhook</li>
-<li>Paste the URL you copied earlier. Do not set authentication. Put a descriptive description, such as &quot;Segment source&quot;</li>
-<li>Click Save</li>
-<li>Click Send Test Event</li>
-<li>Sending the test event make take a while, you may wait or close the window.</li>
-</ul>
-<p>Fingerprint account is successfully connected to the Segment account!</p>
+<ol>
+<li>Log in to your Segment account, go to <strong>Connections</strong>.</li>
+<li>Select <strong>Sources</strong>, and select previously created source. You should see the details of the source, along with the webhook URL.</li>
+<li>Copy the webhook URL.</li>
+<li>Log in to your Fingerprint account.</li>
+<li>Go to <strong>App Settings</strong> &gt; <strong>Webhooks</strong>.</li>
+<li>Click <strong>+Add Webhook</strong>.</li>
+<li>Paste the URL you copied earlier. Do not set authentication. Put a descriptive description, such as &quot;Segment source&quot;.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Click <strong>Send Test Event</strong>.</li>
+<li>Sending the test event can take a minute or two.</li>
+</ol>
+<p>For every visitor identification event, Fingerprint will now send the identification result to your Segment Source function.</p>
 
 <a href="#configure-js-agent" id="configure-js-agent" style="color: inherit; text-decoration: none;">
   <h3>Configure JS Agent</h3>
 </a>
-<p>The Segment integration is <em>not</em> enabled by default. We must configure JS Agent explicitly to use the Segment Integration.
-One uses Segment Integration by making use of <code>tag</code> field. More info about <code>tag</code> can be found <a href="https://dev.fingerprint.com/docs/js-agent#tag">here</a>.</p>
-<p>First of all, add the <code>tag</code> if it is not there. Then, add a field called <code>integrations</code>, and create a field called <code>segment</code> in it, like below:</p>
+<p>The Segment integration is <em>not</em> enabled by default. JS Agent must be configured explicitly to use the Segment Integration.
+Use the JS agent&#39;s <code>tag</code> property to enable your Segment integration. See more info about <code>tag</code> see the <a href="https://dev.fingerprint.com/docs/js-agent#tag">JS agent API Reference</a>.</p>
+<p>Add the <code>tag</code> field if it is not there. Then, add a field called <code>integrations</code>, and create a field called <code>segment</code> in it, like below:</p>
 <pre><code class="language-javascript"><span class="hl-0">fp</span><span class="hl-1">.</span><span class="hl-2">get</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-0">tag:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">integrations:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">segment:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">// segment fields</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">  </span><span class="hl-3">// ... more fields</span><br/><span class="hl-1">})</span>
 </code></pre>
-<p>Inside the <code>segment</code> object, define <a href="https://segment.com/docs/connections/spec/">Segment Specs</a>, like below</p>
+<p>Inside the <code>segment</code> object, define <a href="https://segment.com/docs/connections/spec/">Segment Specs</a>, like below:</p>
 <pre><code class="language-javascript"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">segmentFields</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">skipIntegration:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-0">identify:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">// ... identify spec fields</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-0">page:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">// ... page spec fields</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-0">track:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">// ... track spec fields</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-0">group:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">// ... group spec fields</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
 </code></pre>
-<p>You may use <code>identify</code>, <code>page</code>, <code>group</code> and <code>track</code> for corresponding specs. 
-You can omit the specs you don&#39;t need. There is also option
-for skipping the segment integration, using <code>skipIntegration</code> field.</p>
-<p>A full example looks like below:</p>
-<pre><code class="language-javascript"><span class="hl-0">fp</span><span class="hl-1">.</span><span class="hl-2">get</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-0">tag:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">integrations:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">segment:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-0">skipIntegration:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-0">identify:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">userId:</span><span class="hl-1"> </span><span class="hl-6">&#39;someUserId&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">traits:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Jon Doe&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">email:</span><span class="hl-1"> </span><span class="hl-6">&#39;jondoe@example.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">plan:</span><span class="hl-1"> </span><span class="hl-6">&#39;free&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">logins:</span><span class="hl-1"> </span><span class="hl-7">12</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">address:</span><span class="hl-1"> {</span><br/><span class="hl-1">              </span><span class="hl-0">street:</span><span class="hl-1"> </span><span class="hl-6">&#39;street1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">city:</span><span class="hl-1"> </span><span class="hl-6">&#39;city1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">state:</span><span class="hl-1"> </span><span class="hl-6">&#39;state1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">          },</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">page:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">category:</span><span class="hl-1"> </span><span class="hl-6">&#39;Account&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Update Password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">context:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">ip:</span><span class="hl-1"> </span><span class="hl-6">&#39;8.8.8.8&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">userAgent:</span><span class="hl-1"> </span><span class="hl-6">&#39;Mozilla&#39;</span><br/><span class="hl-1">          },</span><br/><span class="hl-1">          </span><span class="hl-0">properties:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">path:</span><span class="hl-1"> </span><span class="hl-6">&#39;/account/password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">referrer:</span><span class="hl-1"> </span><span class="hl-6">&#39;/account/home&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">search:</span><span class="hl-1"> </span><span class="hl-6">&#39;debug=true&amp;testParam=123&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">title:</span><span class="hl-1"> </span><span class="hl-6">&#39;Appify - Update Account Password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">url:</span><span class="hl-1"> </span><span class="hl-6">&#39;https://appify.dev/account/password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">keywords:</span><span class="hl-1"> [</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;update&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;account&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;change&#39;</span><br/><span class="hl-1">            ]</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">track:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">event:</span><span class="hl-1"> </span><span class="hl-6">&#39;Plan Updated&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">properties:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">revenue:</span><span class="hl-1"> </span><span class="hl-6">&#39;19.99&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">currency:</span><span class="hl-1"> </span><span class="hl-6">&#39;USD&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">value:</span><span class="hl-1"> </span><span class="hl-6">&#39;19.99&#39;</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">group:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">groupId:</span><span class="hl-1"> </span><span class="hl-6">&#39;0e8c78ea9d97a7b8185e8632&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">traits:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Fingerprint&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">industry:</span><span class="hl-1"> </span><span class="hl-6">&#39;Tech&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">employees:</span><span class="hl-1"> </span><span class="hl-7">110</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">plan:</span><span class="hl-1"> </span><span class="hl-6">&#39;enterprise&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-6">&quot;total billed&quot;</span><span class="hl-0">:</span><span class="hl-1"> </span><span class="hl-7">12000</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">website:</span><span class="hl-1"> </span><span class="hl-6">&#39;fingerprint.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">address:</span><span class="hl-1"> {</span><br/><span class="hl-1">              </span><span class="hl-0">city:</span><span class="hl-1"> </span><span class="hl-6">&#39;New York&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">country:</span><span class="hl-1"> </span><span class="hl-6">&#39;USA&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">postalCode:</span><span class="hl-1"> </span><span class="hl-6">&#39;32320&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">state:</span><span class="hl-1"> </span><span class="hl-6">&#39;New York&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">street:</span><span class="hl-1"> </span><span class="hl-6">&#39;5th Ave&#39;</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">            </span><span class="hl-0">avatar:</span><span class="hl-1"> </span><span class="hl-6">&#39;https://fingerprint.com/favicon.ico&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">description:</span><span class="hl-1"> </span><span class="hl-6">&#39;A Fingerprinting company&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">email:</span><span class="hl-1"> </span><span class="hl-6">&#39;support@fingerprint.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">id:</span><span class="hl-1"> </span><span class="hl-6">&#39;0e8c78ea9d97a7b8185e8632&#39;</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">  </span><span class="hl-3">// ... more fields</span><br/><span class="hl-1">})</span>
-</code></pre>
+<p>You may use <code>identify</code>, <code>page</code>, <code>group</code>, and <code>track</code> for corresponding Specs. 
+You can omit the Specs you don&#39;t need (exception: Identity Spec is still created when omitted). You can use <code>skipIntegration</code> field for skipping the segment integration entirely.</p>
 
 <a href="#setting-destinations" id="setting-destinations" style="color: inherit; text-decoration: none;">
   <h3>Setting Destinations</h3>
 </a>
-<p>Now that the JS Agent and Segment Source are connected, the specs should be flowing to 
+<p>Now that the JS Agent and Segment Source are connected, the Specs should be flowing to 
 your segment account as your website gets visitors. Set up a destination to make use of flowing data, such as Google Analytics or others that suits
 your business needs the best. </p>
-<p>Segment Source function populates the <code>anonymousId</code> field with
-Fingerprint&#39;s <code>visitorId</code> info, and <code>userId</code> info with what is provided in <code>tag.integrations.segment.identify.userId</code> 
-field for Identify, Page, Track and Group specs.</p>
+
+<a href="#how-to-use" id="how-to-use" style="color: inherit; text-decoration: none;">
+  <h2>How to use</h2>
+</a>
+<p>The Segment Source function creates Specs based on the <code>tag.integration.segment</code> object.</p>
+<details>
+<summary>Full Example</summary>
+
+<pre><code class="language-javascript"><span class="hl-0">fp</span><span class="hl-1">.</span><span class="hl-2">get</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-0">tag:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">integrations:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">segment:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-0">skipIntegration:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-0">identify:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">userId:</span><span class="hl-1"> </span><span class="hl-6">&#39;someUserId&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">traits:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Jon Doe&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">email:</span><span class="hl-1"> </span><span class="hl-6">&#39;jondoe@example.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">plan:</span><span class="hl-1"> </span><span class="hl-6">&#39;free&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">logins:</span><span class="hl-1"> </span><span class="hl-7">12</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">address:</span><span class="hl-1"> {</span><br/><span class="hl-1">              </span><span class="hl-0">street:</span><span class="hl-1"> </span><span class="hl-6">&#39;street1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">city:</span><span class="hl-1"> </span><span class="hl-6">&#39;city1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">state:</span><span class="hl-1"> </span><span class="hl-6">&#39;state1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">          },</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">page:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">category:</span><span class="hl-1"> </span><span class="hl-6">&#39;Account&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Update Password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">context:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">ip:</span><span class="hl-1"> </span><span class="hl-6">&#39;8.8.8.8&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">userAgent:</span><span class="hl-1"> </span><span class="hl-6">&#39;Mozilla&#39;</span><br/><span class="hl-1">          },</span><br/><span class="hl-1">          </span><span class="hl-0">properties:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">path:</span><span class="hl-1"> </span><span class="hl-6">&#39;/account/password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">referrer:</span><span class="hl-1"> </span><span class="hl-6">&#39;/account/home&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">search:</span><span class="hl-1"> </span><span class="hl-6">&#39;debug=true&amp;testParam=123&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">title:</span><span class="hl-1"> </span><span class="hl-6">&#39;Appify - Update Account Password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">url:</span><span class="hl-1"> </span><span class="hl-6">&#39;https://appify.dev/account/password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">keywords:</span><span class="hl-1"> [</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;password&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;update&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;account&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-6">&#39;change&#39;</span><br/><span class="hl-1">            ]</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">track:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">event:</span><span class="hl-1"> </span><span class="hl-6">&#39;Plan Updated&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">properties:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">revenue:</span><span class="hl-1"> </span><span class="hl-6">&#39;19.99&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">currency:</span><span class="hl-1"> </span><span class="hl-6">&#39;USD&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">value:</span><span class="hl-1"> </span><span class="hl-6">&#39;19.99&#39;</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-0">group:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-0">groupId:</span><span class="hl-1"> </span><span class="hl-6">&#39;0e8c78ea9d97a7b8185e8632&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-0">traits:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-6">&#39;Fingerprint&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">industry:</span><span class="hl-1"> </span><span class="hl-6">&#39;Tech&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">employees:</span><span class="hl-1"> </span><span class="hl-7">110</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">plan:</span><span class="hl-1"> </span><span class="hl-6">&#39;enterprise&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-6">&quot;total billed&quot;</span><span class="hl-0">:</span><span class="hl-1"> </span><span class="hl-7">12000</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">website:</span><span class="hl-1"> </span><span class="hl-6">&#39;fingerprint.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">address:</span><span class="hl-1"> {</span><br/><span class="hl-1">              </span><span class="hl-0">city:</span><span class="hl-1"> </span><span class="hl-6">&#39;New York&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">country:</span><span class="hl-1"> </span><span class="hl-6">&#39;USA&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">postalCode:</span><span class="hl-1"> </span><span class="hl-6">&#39;32320&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">state:</span><span class="hl-1"> </span><span class="hl-6">&#39;New York&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-0">street:</span><span class="hl-1"> </span><span class="hl-6">&#39;5th Ave&#39;</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">            </span><span class="hl-0">avatar:</span><span class="hl-1"> </span><span class="hl-6">&#39;https://fingerprint.com/favicon.ico&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">description:</span><span class="hl-1"> </span><span class="hl-6">&#39;A Fingerprinting company&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">email:</span><span class="hl-1"> </span><span class="hl-6">&#39;support@fingerprint.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">id:</span><span class="hl-1"> </span><span class="hl-6">&#39;0e8c78ea9d97a7b8185e8632&#39;</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">  </span><span class="hl-3">// ... more fields</span><br/><span class="hl-1">})</span>
+</code></pre>
+</details>
+
+
+<a href="#identify-spec" id="identify-spec" style="color: inherit; text-decoration: none;">
+  <h3>Identify Spec</h3>
+</a>
+<p>Identify call lets you tie a user to their actions and record traits about them. It includes a unique User ID and any optional traits you know about the user, like their email, name, and more.</p>
+<p><a href="https://segment.com/docs/connections/spec/identify/">Identity Spec</a> is defined by the <code>identify</code> field, but it is <em>still</em> created even when you omit the <code>identify</code> field.</p>
+<ul>
+<li><code>anonymousId</code> is populated with the <a href="https://dev.fingerprint.com/docs/js-agent#visitorid"><code>visitorId</code></a> generated by Fingerprint.</li>
+<li><code>userId</code> is populated with <code>identify.userId</code>.</li>
+<li><code>traits.visitorId</code> is populated with the visitor ID generated by Fingerprint.</li>
+<li><code>traits.createdAt</code> is populated with the <code>firstSeenAt.subscription</code> field of the webhook, which is <a href="https://dev.fingerprint.com/docs/useful-timestamps#definitions">the time of the first visit of the visitor</a>.</li>
+<li>Can be extended by extending the <code>identify</code> field.</li>
+<li><code>traits</code> field can be extended by extending the <code>identify.traits</code> field.</li>
+</ul>
+
+<a href="#page-spec" id="page-spec" style="color: inherit; text-decoration: none;">
+  <h3>Page Spec</h3>
+</a>
+<p>The page call lets you record whenever a user sees a page of your website, along with any optional properties about the page</p>
+<p><a href="https://segment.com/docs/connections/spec/page/">Page Spec</a> is defined by the <code>page</code> field.</p>
+<ul>
+<li><code>anonymousId</code> is populated with the visitor ID generated by Fingerprint.</li>
+<li><code>userId</code> is populated with <code>identify.userId</code>.</li>
+<li><code>context.ip</code> is populated with IP address of the visitor.</li>
+<li><code>context.browserDetails</code> is populated with the browser details of the visitor, such as browser name, browser operating system, etc.</li>
+<li><code>context.incognito</code> is the boolean field for whether the page view was made in incognito or private mode.</li>
+<li><code>context.confidenceScore</code> is the confidence score of the identification, generated by Fingerprint.</li>
+<li><code>context.requestId</code> is the ID of the identification request to Fingerprint.</li>
+<li><code>properties.url</code> is the URL of the webpage that triggered the Fingerprint identification.</li>
+<li>Can be extended by extending the <code>page</code> field.</li>
+<li><code>context</code> and <code>properties</code> fields can be extended by extending the <code>page.context</code>, <code>page.properties</code> fields, respectively.</li>
+</ul>
+
+<a href="#track-spec" id="track-spec" style="color: inherit; text-decoration: none;">
+  <h3>Track Spec</h3>
+</a>
+<p>The track call is how you record any actions your users perform, along with any properties that describe the action.</p>
+<p><a href="https://segment.com/docs/connections/spec/track/">Track Spec</a> is defined by the <code>track</code> field.</p>
+<ul>
+<li><code>anonymousId</code> is populated with the visitor ID generated by Fingerprint.</li>
+<li><code>userId</code> is populated with <code>identify.userId</code>.</li>
+<li>Can be extended by extending the <code>track</code> field.</li>
+</ul>
+<blockquote>
+<p>:warning: Keep in mind that the <code>event</code> field is required for Track Spec. If <code>event</code> is not provided, Track Spec will not be created. Other Specs are still going to be created.</p>
+</blockquote>
+
+<a href="#group-spec" id="group-spec" style="color: inherit; text-decoration: none;">
+  <h3>Group Spec</h3>
+</a>
+<p>The group call is how you associate an individual user with a group—be it a company, organization, account, project, team or whatever other name you came up with for the same concept!</p>
+<p><a href="https://segment.com/docs/connections/spec/group/">Group Spec</a> is defined by the <code>group</code> field.</p>
+<ul>
+<li><code>anonymousId</code> is populated with the visitor ID generated by Fingerprint.</li>
+<li><code>userId</code> is populated with <code>identify.userId</code>.</li>
+<li>Can be extended by extending the <code>group</code> field.</li>
+</ul>
+<blockquote>
+<p>:warning: Keep in mind that the <code>groupId</code> field is required for Group Spec. If <code>groupId</code> is not provided, Group Spec will not be created. Other Specs are still going to be created.</p>
+</blockquote>
+
+<a href="#screen-spec" id="screen-spec" style="color: inherit; text-decoration: none;">
+  <h3>Screen Spec</h3>
+</a>
+<p>The screen call lets you record whenever a user sees a screen, the mobile equivalent of page, in your mobile app, along with any properties about the screen</p>
+<p><a href="https://segment.com/docs/connections/spec/screen/">Screen Spec</a> is not supported.</p>
+
+<a href="#skipping-the-integration" id="skipping-the-integration" style="color: inherit; text-decoration: none;">
+  <h3>Skipping the integration</h3>
+</a>
+<p>Set <code>skipIntegration</code> to <code>true</code> for preventing the source function to create any Specs. Defaults to <code>false</code>.</p>
 </div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-function"><a href="modules.html#default" class="tsd-kind-icon">default</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
