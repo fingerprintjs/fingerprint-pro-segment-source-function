@@ -77,7 +77,7 @@ The source is successfully created!
 9. Click **Send Test Event**.
 10. Sending the test event make take a while, you may wait or close the window.
 
-The Fingerprint account is successfully connected to the Segment account!
+For every visitor identification event, Fingerprint will now send the identification result to your Segment Source function.
 
 ### Configure JS Agent
 
