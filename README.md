@@ -82,7 +82,7 @@ For every visitor identification event, Fingerprint will now send the identifica
 ### Configure JS Agent
 
 The Segment integration is _not_ enabled by default. JS Agent must be configured explicitly to use the Segment Integration.
-One uses Segment Integration by making use of the `tag` field. More info about the `tag` field can be found [here](https://dev.fingerprint.com/docs/js-agent#tag).
+Use the JS agent's `tag` property to enable your Segment integration. See more info about `tag` see the [JS agent API Reference](https://dev.fingerprint.com/docs/js-agent#tag).
 
 Add the `tag` field if it is not there. Then, add a field called `integrations`, and create a field called `segment` in it, like below:
 ```javascript
