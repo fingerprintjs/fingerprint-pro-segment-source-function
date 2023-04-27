@@ -1,12 +1,11 @@
 name: Release
 
 on:
-  # TODO After publishing repository change this to trigger on push to main and test
+  # We prefer manual release only
   workflow_dispatch:
 
 jobs:
   release:
-    # Don't forget to configure production environment after repository is made public to require approval before triggering!
     environment: production
     runs-on: ubuntu-latest
     steps:
