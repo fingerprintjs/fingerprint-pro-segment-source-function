@@ -245,7 +245,7 @@ fp.get({
 - `userId` is populated with `identify.userId`
 - Can be extended by extending the `track` field
 
-> :warning: Keep in mind that the `event` field is required for Track Spec. If `event` is not provided, Track Spec will not be created, and other Specs are not affected by this.
+> :warning: Keep in mind that the `event` field is required for Track Spec. If `event` is not provided, Track Spec will not be created. Other Specs are still going to be created.
 
 ### Group Spec
 
@@ -255,7 +255,7 @@ fp.get({
 - `userId` is populated with `identify.userId`
 - Can be extended by extending the `group` field
 
-> :warning: Keep in mind that the `groupId` field is required for Group Spec. If `groupId` is not provided, Group Spec will not be created, and other Specs are not affected by this.
+> :warning: Keep in mind that the `groupId` field is required for Group Spec. If `groupId` is not provided, Group Spec will not be created. Other Specs are still going to be created.
 
 ### Screen Spec
 
