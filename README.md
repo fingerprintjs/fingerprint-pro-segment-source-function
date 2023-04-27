@@ -28,63 +28,63 @@
    </a>
 </p>
 
-> :warning: **Work in progress**: This is a beta version of the library
-
 # Fingerprint Pro Segment Source Function
 
 Fingerprint provides a [Segment Source Function](https://Segment.com/docs/connections/functions/source-functions/) that can be configured to use with [Fingerprint Pro JS Agent](https://dev.fingerprint.com/docs/js-agent).
-It is possible to send events for Segment destinations using this repository and JS Agent only. 
+It is possible to send events for Segment destinations using this repository and JS Agent only.
+
+Fingerprint Segment integration uses [Fingerprint Webhooks](https://dev.fingerprint.com/docs/webhooks) to send data to Segment servers.
 
 > :warning: Mobile platforms are currently not supported. Please contact support if you need help.
 
-## How to use
+## How to set up
 
 ### Create a Segment Source Function
 
-- Login to your Segment account, go to Connections
-- Select Catalog > Functions > Create Function (or New Function)
-- Select Source, click Build
-- Replace the source code with the Fingerprint Segment source function code from [here](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js)
-- Click Configure, enter a descriptive name, such as "FPJS Source Function".
-Optionally you can put description and logo. Click Create Function.
+- Log in to your Segment account, go to **Connections**
+- Select **Catalog** > **Functions** > **Create Function** (or **New Function**)
+- Select **Source**, click **Build**
+- Replace the source code with the [latest Fingerprint Segment source function](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js).
+- Click **Configure**, and enter a descriptive name, such as "FPJS Source Function".
+Optionally you can put a description and logo of your choice. Click **Create Function**.
 
-Source function is successfully created!
+The source function is successfully created!
 
 ### Create a Segment Source and connect it to the function
 
-- Login to your Segment account, go to Connections
-- Select Catalog > Functions
+- Log in to your Segment account, go to **Connections**
+- Select **Catalog** > **Functions**
 - Select the source function previously created
-- Select Connect Source
-- Put a descriptive name, such as "FPJS Source". You may optionally put labels.
-- Click Continue
+- Select **Connect Source**
+- Put a descriptive name, such as "FPJS Source". You may optionally put labels of your choice.
+- Click **Continue**
 - You will see the webhook URL. Don't worry about this for now.
-- Click Continue
-- Click Finish
+- Click **Continue**
+- Click **Finish**
 
-Source is successfully created!
+The source is successfully created!
 
 ### Connect Segment Source with Fingerprint Account
 
-- Login to your Segment account, go to Connections
-- Select Sources, select previously created Source. You should see the details of the source, along with webhook URL
+- Log in to your Segment account, go to **Connections**
+- Select **Sources**, and select previously created source. You should see the details of the source, along with the webhook URL
 - Copy the webhook URL
-- Login to your Fingerprint account
-- Go to App Settings > Webhooks
-- Click +Add Webhook
+- Log in to your Fingerprint account
+- Go to **App Settings** > **Webhooks**
+- Click **+Add Webhook**
 - Paste the URL you copied earlier. Do not set authentication. Put a descriptive description, such as "Segment source"
-- Click Save
-- Click Send Test Event
+- Click **Save**
+- Click **Send Test Event**
 - Sending the test event make take a while, you may wait or close the window.
 
-Fingerprint account is successfully connected to the Segment account!
+The Fingerprint account is successfully connected to the Segment account!
 
 ### Configure JS Agent
 
-The Segment integration is _not_ enabled by default. We must configure JS Agent explicitly to use the Segment Integration.
-One uses Segment Integration by making use of `tag` field. More info about `tag` can be found [here](https://dev.fingerprint.com/docs/js-agent#tag).
+The Segment integration is _not_ enabled by default. JS Agent must be configured explicitly to use the Segment Integration.
+One uses Segment Integration by making use of the `tag` field. More info about the `tag` field can be found [here](https://dev.fingerprint.com/docs/js-agent#tag).
 
-First of all, add the `tag` if it is not there. Then, add a field called `integrations`, and create a field called `segment` in it, like below:
+Add the `tag` field if it is not there. Then, add a field called `integrations`, and create a field called `segment` in it, like below:
 ```javascript
 fp.get({
   tag: {
@@ -97,7 +97,7 @@ fp.get({
   // ... more fields
 })
 ```
-Inside the `segment` object, define [Segment Specs](https://segment.com/docs/connections/spec/), like below
+Inside the `segment` object, define [Segment Specs](https://segment.com/docs/connections/spec/), like below:
 
 ```javascript
 const segmentFields = {
@@ -116,11 +116,22 @@ const segmentFields = {
   }
 }
 ```
-You may use `identify`, `page`, `group` and `track` for corresponding specs. 
-You can omit the specs you don't need. There is also option
-for skipping the segment integration, using `skipIntegration` field.
+You may use `identify`, `page`, `group`, and `track` for corresponding Specs. 
+You can omit the Specs you don't need (exception: Identity Spec is still created when omitted). You can use `skipIntegration` field for skipping the segment integration entirely.
 
-A full example looks like below:
+### Setting Destinations
+
+Now that the JS Agent and Segment Source are connected, the Specs should be flowing to 
+your segment account as your website gets visitors. Set up a destination to make use of flowing data, such as Google Analytics or others that suits
+your business needs the best. 
+
+## How to use
+
+The Segment Source function creates Specs based on the `tag.integration.segment` object.
+
+<details>
+<summary>Full Example</summary>
+
 ```javascript
 fp.get({
   tag: {
@@ -198,13 +209,58 @@ fp.get({
   // ... more fields
 })
 ```
+</details>
 
-### Setting Destinations
+### Identify Spec
 
-Now that the JS Agent and Segment Source are connected, the specs should be flowing to 
-your segment account as your website gets visitors. Set up a destination to make use of flowing data, such as Google Analytics or others that suits
-your business needs the best. 
+[Identity Spec](https://segment.com/docs/connections/spec/identify/) is controlled by the `identify` field, but it is _still_ created even when `identify` field is omitted.
 
-Segment Source function populates the `anonymousId` field with
-Fingerprint's `visitorId` info, and `userId` info with what is provided in `tag.integrations.segment.identify.userId` 
-field for Identify, Page, Track and Group specs.
+- `anonymousId` is populated with the visitor ID generated by Fingerprint
+- `userId` is populated with `identify.userId`
+- `traits.visitorId` is populated with the visitor ID generated by Fingerprint
+- `traits.createdAt` is populated with the `firstSeenAt.subscription` field of the webhook, which is [the time of the first visit of the visitor](https://dev.fingerprint.com/docs/useful-timestamps#definitions)
+- Can be extended by extending the `identify` field
+- `traits` field can be extended by extending the `identify.traits` field
+
+### Page Spec
+
+[Page Spec](https://segment.com/docs/connections/spec/page/) is controlled by the `page` field. It is _not_ created if `page` is omitted.
+
+- `anonymousId` is populated with the visitor ID generated by Fingerprint
+- `userId` is populated with `identify.userId`
+- `context.ip` is populated with IP address of the visitor
+- `context.browserDetails` is populated with the browser details of the visitor, such as browser name, browser operating system, etc.
+- `context.incognito` is the boolean field for whether the page view was made in incognito or private mode
+- `context.confidenceScore` is the confidence score of the identification, generated by Fingerprint
+- `context.requestId` is the ID of the identification request to Fingerprint
+- `properties.url` is the URL of the webpage that triggered the Fingerprint identification
+- Can be extended by extending the `page` field
+- `context` and `properties` fields can be extended by extending the `page.context`, `page.properties` fields, respectively.
+
+### Track Spec
+
+[Track Spec](https://segment.com/docs/connections/spec/track/) is controlled by the `track` field. It is _not_ created if `track` is omitted.
+
+- `anonymousId` is populated with the visitor ID generated by Fingerprint
+- `userId` is populated with `identify.userId`
+- Can be extended by extending the `track` field
+
+> :warning: Keep in mind that the `event` field is required for Track Spec. If `event` is not provided, Track Spec will not be created, and other Specs are not affected by this.
+
+### Group Spec
+
+[Group Spec](https://segment.com/docs/connections/spec/group/) is controlled by the `group` field. It is _not_ created if `group` is omitted.
+
+- `anonymousId` is populated with the visitor ID generated by Fingerprint
+- `userId` is populated with `identify.userId`
+- Can be extended by extending the `group` field
+
+> :warning: Keep in mind that the `groupId` field is required for Group Spec. If `groupId` is not provided, Group Spec will not be created, and other Specs are not affected by this.
+
+### Screen Spec
+
+[Screen Spec](https://segment.com/docs/connections/spec/screen/) is not supported.
+
+### Skipping the integration
+
+Set `skipIntegration` to `true` for preventing the source function to create any Specs. Defaults to `false`.
