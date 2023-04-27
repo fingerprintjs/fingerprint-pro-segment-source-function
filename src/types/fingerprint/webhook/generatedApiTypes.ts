@@ -20,7 +20,12 @@ export interface paths {
   }
   '/webhook': {
     /** @description Fake path to describe webhook format. More information about webhooks can be found in the [documentation](https://dev.fingerprint.com/docs/webhooks) */
-    trace: {}
+    trace: {
+      responses: {
+        /** @description Dummy for the schema */
+        default: never
+      }
+    }
   }
 }
 
@@ -80,19 +85,7 @@ export interface components {
         confidence: components['schemas']['Confidence']
         /** @description Attribute represents if a visitor had been identified before. */
         visitorFound: boolean
-        /**
-         * @example {
-         *   "global": "2022-05-05T18:28:54.535Z",
-         *   "subscription": "2022-06-09T22:58:05.576Z"
-         * }
-         */
         firstSeenAt: components['schemas']['SeenAt']
-        /**
-         * @example {
-         *   "global": "2022-06-09T22:58:35.795Z",
-         *   "subscription": null
-         * }
-         */
         lastSeenAt: components['schemas']['SeenAt']
       }[]
       /**
@@ -202,19 +195,7 @@ export interface components {
       confidence: components['schemas']['Confidence']
       /** @description Attribute represents if a visitor had been identified before. */
       visitorFound: boolean
-      /**
-       * @example {
-       *   "global": "2022-05-05T18:28:54.535Z",
-       *   "subscription": "2022-06-09T22:58:05.576Z"
-       * }
-       */
       firstSeenAt: components['schemas']['SeenAt']
-      /**
-       * @example {
-       *   "global": "2022-06-09T22:58:35.795Z",
-       *   "subscription": null
-       * }
-       */
       lastSeenAt: components['schemas']['SeenAt']
     }
     /** Visit */
@@ -264,19 +245,7 @@ export interface components {
       confidence: components['schemas']['Confidence']
       /** @description Attribute represents if a visitor had been identified before. */
       visitorFound: boolean
-      /**
-       * @example {
-       *   "global": "2022-05-05T18:28:54.535Z",
-       *   "subscription": "2022-06-09T22:58:05.576Z"
-       * }
-       */
       firstSeenAt: components['schemas']['SeenAt']
-      /**
-       * @example {
-       *   "global": "2022-06-09T22:58:35.795Z",
-       *   "subscription": null
-       * }
-       */
       lastSeenAt: components['schemas']['SeenAt']
     }
     /** BrowserDetails */
@@ -305,11 +274,23 @@ export interface components {
        */
       score: number
     }
-    /** SeenAt */
+    /**
+     * SeenAt
+     * @example {
+     *   "global": "2022-05-05T18:28:54.535Z",
+     *   "subscription": null
+     * }
+     */
     SeenAt: {
-      /** Format: date-time */
+      /**
+       * Format: date-time
+       * @example 2022-05-05T18:28:54.535Z
+       */
       global: string | null
-      /** Format: date-time */
+      /**
+       * Format: date-time
+       * @example 2022-06-09T22:58:05.576Z
+       */
       subscription: string | null
     }
     /** IPLocation */
@@ -338,19 +319,7 @@ export interface components {
         /** @example Prague */
         name?: string
       }
-      /**
-       * @example {
-       *   "code": "US",
-       *   "name": "United States"
-       * }
-       */
       country: components['schemas']['Location']
-      /**
-       * @example {
-       *   "code": "NA",
-       *   "name": "North America"
-       * }
-       */
       continent: components['schemas']['Location']
       subdivisions?: components['schemas']['Subdivision'][]
     }
@@ -418,19 +387,7 @@ export interface components {
           confidence: components['schemas']['Confidence']
           /** @description Attribute represents if a visitor had been identified before. */
           visitorFound: boolean
-          /**
-           * @example {
-           *   "global": "2022-05-05T18:28:54.535Z",
-           *   "subscription": "2022-06-09T22:58:05.576Z"
-           * }
-           */
           firstSeenAt: components['schemas']['SeenAt']
-          /**
-           * @example {
-           *   "global": "2022-06-09T22:58:35.795Z",
-           *   "subscription": null
-           * }
-           */
           lastSeenAt: components['schemas']['SeenAt']
           visitorId: string
         }
@@ -441,6 +398,7 @@ export interface components {
         data?: components['schemas']['BotdResult']
         error?: components['schemas']['BotdError']
       }
+      [key: string]: unknown | undefined
     }
     /** @description Contains event from activated products - Fingerprint Pro or Bot Detection */
     EventResponse: {
@@ -480,14 +438,14 @@ export interface components {
        * @example https://example.com/login
        */
       url: string
-      /**
-       * @example {
-       *   "result": "notDetected"
-       * }
-       */
       bot: components['schemas']['BotdDetectionResult']
     }
-    /** @description Stores bot detection result */
+    /**
+     * @description Stores bot detection result
+     * @example {
+     *   "result": "notDetected"
+     * }
+     */
     BotdDetectionResult: {
       /**
        * @description Bot detection result:
