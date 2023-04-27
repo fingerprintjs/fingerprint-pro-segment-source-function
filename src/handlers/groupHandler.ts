@@ -19,6 +19,6 @@ export function handleGroup(
       anonymousId: body.visitorId,
     })
   } catch (e) {
-    // do nothing
+    console.log('error:groupHandler', e)
   }
 }

@@ -30,6 +30,6 @@ export function handlePage(
       },
     })
   } catch (e) {
-    // do nothing
+    console.log('error:pageHandler', e)
   }
 }

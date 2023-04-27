@@ -20,6 +20,6 @@ export function handleIdentify(
       },
     })
   } catch (e) {
-    // do nothing
+    console.log('error:identifyHandler', e)
   }
 }

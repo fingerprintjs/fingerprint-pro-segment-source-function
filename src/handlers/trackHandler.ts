@@ -19,6 +19,6 @@ export function handleTrack(
       anonymousId: body.visitorId,
     })
   } catch (e) {
-    // do nothing
+    console.log('error:trackHandler', e)
   }
 }
