@@ -75,7 +75,7 @@ The source is successfully created!
 7. Paste the URL you copied earlier. Do not set authentication. Put a descriptive description, such as "Segment source".
 8. Click **Save**.
 9. Click **Send Test Event**.
-10. Sending the test event make take a while, you may wait or close the window.
+10. Sending the test event may take a while, you can wait or close the window.
 
 For every visitor identification event, Fingerprint will now send the identification result to your Segment Source function.
 
