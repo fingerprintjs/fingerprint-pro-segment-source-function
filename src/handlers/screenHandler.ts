@@ -12,9 +12,13 @@ export function handleScreen(
     return
   }
 
-  Segment.screen({
-    ...screen,
-    userId,
-    anonymousId: body.visitorId,
-  })
+  try {
+    Segment.screen({
+      ...screen,
+      userId,
+      anonymousId: body.visitorId,
+    })
+  } catch (e) {
+    console.log('error:screenHandler', e)
+  }
 }
