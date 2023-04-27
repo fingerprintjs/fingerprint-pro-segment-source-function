@@ -1,0 +1,110 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@fingerprintjs/library-template-typescript</title><meta name="description" content="Documentation for @fingerprintjs/library-template-typescript"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@fingerprintjs/library-template-typescript</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@fingerprintjs/library-template-typescript </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center">
+  <a href="https://fingerprint.com">
+    <picture>
+     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fingerprintjs/library-template-typescript/main/resources/logo_light.svg" />
+     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/fingerprintjs/library-template-typescript/main/resources/logo_dark.svg" />
+     <img src="https://raw.githubusercontent.com/fingerprintjs/library-template-typescript/main/resources/logo_dark.svg" alt="Fingerprint logo" width="312px" />
+   </picture>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/fingerprintjs/library-template-typescript/actions/workflows/build.yml">
+    <img src="https://github.com/fingerprintjs/library-template-typescript/actions/workflows/build.yml/badge.svg" alt="Build status">
+  </a>
+  <a href="https://fingerprintjs.github.io/library-template-typescript/coverage/">
+    <img src="https://fingerprintjs.github.io/library-template-typescript/coverage/badges.svg" alt="coverage">
+  </a>
+  <a href="https://github.com/fingerprintjs/library-template-typescript/actions/workflows/release.yml">
+    <img src="https://github.com/fingerprintjs/library-template-typescript/actions/workflows/release.yml/badge.svg" alt="Release status">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/:license-mit-blue.svg" alt="MIT license">
+  </a>
+  <a href="https://discord.gg/39EpE2neBg">
+    <img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server">
+  </a>
+   <a href="https://fingerprintjs.github.io/library-template-typescript/docs/">
+     <img src="https://img.shields.io/badge/-Documentation-green" alt="Documentation">
+   </a>
+</p>
+This is template repository for creating TypeScript libraries by FingerprintJS team.
+
+
+<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+  <h2>Features</h2>
+</a>
+<ul>
+<li><a href="https://www.typescriptlang.org/">Typescript</a> support</li>
+<li><a href="https://jestjs.io/">Jest</a> setup</li>
+<li>Lint using <a href="https://eslint.org/">ESLint</a></li>
+<li><a href="https://prettier.io/">Prettier</a> integration</li>
+<li>Docs generation using <a href="https://typedoc.org/">typedoc</a> with deployment to GitHub Pages</li>
+<li>Automated releases using <a href="https://github.com/semantic-release/semantic-release">semantic-release</a></li>
+<li>Conventional commits with commit lint using git hooks</li>
+</ul>
+
+<a href="#quick-start" id="quick-start" style="color: inherit; text-decoration: none;">
+  <h2>Quick start</h2>
+</a>
+<ol>
+<li>Clone this repository, remove <code>.git</code> folder and call <code>git init</code> / Use <code>Use this template</code> GitHub button</li>
+<li>Setup project specific fields in package.json</li>
+<li>Setup <code>artifactName</code> and other build properties in <code>rollup.config.js</code></li>
+<li>If your project emits <code>.d.ts</code> typings, set correct path in <code>package.json</code> for <code>test:dts</code> command or remove it </li>
+<li>Use <code>src</code> folder to organize your code and put tests in <code>__test__</code> folder</li>
+<li>If you want isolated run you can use Docker</li>
+<li>Push your repo, check that GitHub actions works</li>
+<li>Add badges</li>
+<li>You are awesome!</li>
+</ol>
+
+<a href="#best-practice" id="best-practice" style="color: inherit; text-decoration: none;">
+  <h2>Best practice</h2>
+</a>
+
+<a href="#choosing-name-for-repository" id="choosing-name-for-repository" style="color: inherit; text-decoration: none;">
+  <h3>Choosing name for repository</h3>
+</a>
+<p>Check <a href="https://github.com/fingerprintjs/home/wiki/FingerprintJS-Naming-Conventions">FingerprintJS naming conventions</a></p>
+
+<a href="#team-best-practise" id="team-best-practise" style="color: inherit; text-decoration: none;">
+  <h3>Team best practise</h3>
+</a>
+<p>Described in <a href="https://github.com/fingerprintjs/home/wiki/Integrations-and-repositories-best-practices">Integrations and repositories best practices</a></p>
+
+<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
+  <h3>Tests</h3>
+</a>
+<p>For unit tests, we use jest, because of the good infrastructure, flexible instruments for mocks and big community.</p>
+<p>This repository contains example of how to configure code coverage reporting without SaaS solutions like codecov
+(such solutions require token with full access to the repository).
+In <a href="https://github.com/fingerprintjs/library-template-typescript/pull/13">PR#13</a> you can find what you need to configure:</p>
+<ul>
+<li>workflow to update the coverage badge in the readme and publish a full report for the main branch</li>
+<li>workflow to add a comment to pr with coverage of the current branch and diff with main</li>
+</ul>
+
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h3>Documentation</h3>
+</a>
+<p>For API reference we use <code>typedoc</code> package and publish documentation in GitHub Pages.</p>
+
+<a href="#publish-to-npm" id="publish-to-npm" style="color: inherit; text-decoration: none;">
+  <h3>Publish to npm</h3>
+</a>
+<p>Publishing to NPM is automated thanks to <a href="https://github.com/semantic-release/semantic-release">semantic-release</a>.
+On every push to <code>main</code> branch it will analyze commits and release new version accordingly to changes.</p>
+<p>To set it up:</p>
+<ol>
+<li>Add <code>NPM_AUTH_TOKEN</code> to the repository secrets area</li>
+<li>Add <code>GH_RELEASE_TOKEN</code> to the repository secrets area, it should have following permissions: <code>public_repo</code>, or <code>repo</code> if your repository is private.
+Thanks to that, you will get automatic releases on GitHub, comments on issues and more!</li>
+<li>Package will publish automatically to NPM when there are relevant changes</li>
+<li>You are awesome!</li>
+</ol>
+
+<a href="#preparing-product-for-release" id="preparing-product-for-release" style="color: inherit; text-decoration: none;">
+  <h3>Preparing product for release</h3>
+</a>
+<p>Just follow <a href="https://github.com/fingerprintjs/home/wiki/Checklist-for-publishing-new-integration">checklist for publishing new integration</a></p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-function"><a href="modules.html#getGreeting" class="tsd-kind-icon">get<wbr/>Greeting</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
