@@ -32,6 +32,8 @@
 
 This Segment [Source function](https://Segment.com/docs/connections/functions/source-functions/) allows you to use [Fingerprint Pro](https://fingerprint.com/) visitor identification data as a data source in Segment. The function receives the data through Fingerprint [webhooks](https://dev.fingerprint.com/docs/webhooks) and normalizes them into Segment [Specs](https://segment.com/docs/connections/spec/). Once your Fingerprint data is inside Segment, you can use it in any of your Segment destinations to detect suspicious activity, prevent fraud or personalize user experiences.
 
+ <img src="resource/../resources/segment-overview.png" alt="Screenshot of Segment overview showing Fingerprint Pro as a data source">
+
 ### Requirements and limitations
 
 * You need to have the Fingerprint Pro [JavaScript agent](https://dev.fingerprint.com/docs/js-agent) installed on your website and configured to send data to Segment. Installing Segment on your website directly is not required. 
