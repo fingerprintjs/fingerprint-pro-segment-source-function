@@ -34,7 +34,7 @@ This Segment [Source function](https://Segment.com/docs/connections/functions/so
 
  <img src="resource/../resources/segment-overview.png" alt="Screenshot of Segment overview showing Fingerprint Pro as a data source">
 
-### Requirements and limitations
+### ⚠️ Requirements and limitations
 
 * You need to have the Fingerprint Pro [JavaScript agent](https://dev.fingerprint.com/docs/js-agent) installed on your website and configured to send data to Segment. Installing Segment on your website directly is not required. 
 * Mobile platforms are currently not supported. Reach out to our [support](https://fingerprint.com/support) if you have any questions.
