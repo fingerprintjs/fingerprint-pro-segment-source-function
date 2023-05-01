@@ -211,8 +211,8 @@ This is how fields in the Identify Spec are populated:
 
 | Identify Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.identify`                                |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `anonymousId`       | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)                                        |
-| `traits.visitorId`  | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)                                        |
+| `anonymousId`       | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) Fingerprint `visitorId`                |
+| `traits.visitorId`  | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) Fingerprint `visitorId`                |
 | `traits.createdAt`  | [`result.firstSeenAt.subscription`](https://dev.fingerprint.com/docs/js-agent#firstseenat) - time of first visit |
 | `userId`            | `identify.userId` - your internal user ID                                                                        |
 | `traits`            | `identify.traits` - any traits you want to record                                                                |
@@ -241,18 +241,18 @@ const segment = {
 
 This is how fields in the Page Spec are populated:
 
-| Page Spec field           | Source field in Fingerprint Pro `result` or metadata passed to `segment`                                  |
-| ------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `anonymousId`             | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId`       |
-| `userId`                  | `identify.userId` - your internal user ID                                                                 |
-| `context.ip`              | [`result.ip`](https://dev.fingerprint.com/docs/js-agent#ip) - IP address                                  |
-| `context.browserDetails`  | [`result.browserDetails`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) |
-| `context.incognito`       | [`result.incognito`](https://dev.fingerprint.com/docs/js-agent#incognito) - Incognito mode                |
-| `context.confidenceScore` | [`result.confidenceScore`](https://dev.fingerprint.com/docs/js-agent#confidence) - Confidence score       |
-| `context.requestId`       | [`result.requestId`](https://dev.fingerprint.com/docs/js-agent#requestid) - ID of Fingerprint request     |
-| `properties.url`          | [`result.url`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) - page URL |
-| `context`                 | `page.context` - any context you want to record                                                           |
-| `properties`              | `page.properties` - any properties you want to record                                                     |
+| Page Spec field           | Source field in Fingerprint Pro `result` or metadata passed to `segment`                                                                 |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `anonymousId`             | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId`                                      |
+| `userId`                  | `identify.userId` - your internal user ID                                                                                                |
+| `context.ip`              | [`result.ip`](https://dev.fingerprint.com/docs/js-agent#ip) - IP address                                                                 |
+| `context.browserDetails`  | [`result.browserDetails`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) - Browser, OS name and version |
+| `context.incognito`       | [`result.incognito`](https://dev.fingerprint.com/docs/js-agent#incognito) - Incognito mode                                               |
+| `context.confidenceScore` | [`result.confidenceScore`](https://dev.fingerprint.com/docs/js-agent#confidence) - Confidence score                                      |
+| `context.requestId`       | [`result.requestId`](https://dev.fingerprint.com/docs/js-agent#requestid) - ID of Fingerprint request                                    |
+| `properties.url`          | [`result.url`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) - page URL                                |
+| `context`                 | `page.context` - any context you want to record                                                                                          |
+| `properties`              | `page.properties` - any properties you want to record                                                                                    |
 
 
 
@@ -274,12 +274,12 @@ const segment = {
 
 This is how fields in the Track Spec are populated:
 
-| Track Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.track` |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `event`          | `track.event` - the event you’re tracking, required                            |
-| `properties`     | `track.properties` - any properties you want to record                         |
-| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)      |
-| `userId`         | `identify.userId` - your internal user ID                                      |
+| Track Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.track`                      |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `event`          | `track.event` - the event you’re tracking, required                                                 |
+| `properties`     | `track.properties` - any properties you want to record                                              |
+| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId` |
+| `userId`         | `identify.userId` - your internal user ID                                                           |
 
 > :warning: The `event` field is required to create a Track Spec.
 
@@ -302,12 +302,12 @@ const segment = {
 
 This is how fields in the Group Spec are populated:
 
-| Group Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment`  |
-| ---------------- | ------------------------------------------------------------------------- |
-| `groupId`        | `group.groupId` - the group ID you’re tracking, required                  |
-| `traits`         | `group.traits` - any grouptraits you want to record                       |
-| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) |
-| `userId`         | `identify.userId` - your internal user ID                                 |
+| Group Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment`                            |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `groupId`        | `group.groupId` - the group ID you’re tracking, required                                            |
+| `traits`         | `group.traits` - any grouptraits you want to record                                                 |
+| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId` |
+| `userId`         | `identify.userId` - your internal user ID                                                           |
 
 
 > :warning: The `groupId` field is required to create a Group Spec.
