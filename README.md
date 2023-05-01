@@ -153,44 +153,25 @@ fp.get({
       segment: {
         skipIntegration: false,
         identify: {
-          userId: 'someUserId',
+          userId: 'your_internal_ID_123456',
           traits: {
             name: 'Jon Doe',
-            email: 'jondoe@example.com',
-            plan: 'free',
-            logins: 12,
-            address: {
-              street: 'street1',
-              city: 'city1',
-              state: 'state1',
-            },
           },
         },
         page: {
           category: 'Account',
           name: 'Update Password',
-          context: {
-            ip: '8.8.8.8',
-            userAgent: 'Mozilla'
-          },
           properties: {
             path: '/account/password',
             referrer: '/account/home',
-            search: 'debug=true&testParam=123',
-            title: 'Appify - Update Account Password',
-            url: 'https://appify.dev/account/password',
-            keywords: [
-              'password',
-              'update',
-              'account',
-              'change'
-            ]
+          },
+          context: {
+            trial: true,
           }
         },
         track: {
           event: 'Plan Updated',
           properties: {
-            revenue: '19.99',
             currency: 'USD',
             value: '19.99'
           }
@@ -201,22 +182,8 @@ fp.get({
             name: 'Fingerprint',
             industry: 'Tech',
             employees: 110,
-            plan: 'enterprise',
-            "total billed": 12000,
-            website: 'fingerprint.com',
-            address: {
-              city: 'New York',
-              country: 'USA',
-              postalCode: '32320',
-              state: 'New York',
-              street: '5th Ave'
-            },
-            avatar: 'https://fingerprint.com/favicon.ico',
-            description: 'A Fingerprinting company',
-            email: 'support@fingerprint.com',
-            id: '0e8c78ea9d97a7b8185e8632'
-          }
-        }
+          },
+        },
       }
     }
   }
@@ -240,7 +207,7 @@ const segment = {
 }
 ```
   
-This is how each field in the Identify Spec is populated:
+This is how fields in the Identify Spec are populated:
 
 | Identify Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.identify`                                |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -259,6 +226,7 @@ The [Page Spec](https://segment.com/docs/connections/spec/page/) lets you record
 ```javascript
 const segment = {
   page: {
+    category: 'Account',
     name: 'Update Password',
     properties: {
       path: '/account/password',
@@ -271,7 +239,7 @@ const segment = {
 }
 ```
 
-This is how each field in the Page Spec is populated:
+This is how fields in the Page Spec are populated:
 
 | Page Spec field           | Source field in Fingerprint Pro `result` or metadata passed to `segment`                                  |
 | ------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -290,7 +258,7 @@ This is how each field in the Page Spec is populated:
 
 ### Track Spec
 
-The [Track Spec](https://segment.com/docs/connections/spec/track/) is how you record actions your users perform, along with any properties that describe the action. It is defined by the `track` field.
+The [Track Spec](https://segment.com/docs/connections/spec/track/) is how you record the actions your users perform, along with any properties that describe the action. It is defined by the `track` field.
 
 ```javascript
 const segment = {
@@ -304,14 +272,14 @@ const segment = {
 }
 ```
 
-This is how each field in the Track Spec is populated:
+This is how fields in the Track Spec are populated:
 
 | Track Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.track` |
 | ---------------- | ------------------------------------------------------------------------------ |
-| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)      |
-| `userId`         | `identify.userId` - your internal user ID                                      |
 | `event`          | `track.event` - the event you’re tracking, required                            |
 | `properties`     | `track.properties` - any properties you want to record                         |
+| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)      |
+| `userId`         | `identify.userId` - your internal user ID                                      |
 
 > :warning: The `event` field is required to create a Track Spec.
 
@@ -332,7 +300,7 @@ const segment = {
 }
 ```
 
-This is how each field in the Group Spec is populated:
+This is how fields in the Group Spec are populated:
 
 | Group Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment`  |
 | ---------------- | ------------------------------------------------------------------------- |
