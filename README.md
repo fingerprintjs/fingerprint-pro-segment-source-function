@@ -211,13 +211,13 @@ const segment = {
   
 This is how fields in the Identify Spec are populated:
 
-| Identify Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.identify`                                |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `anonymousId`       | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) Fingerprint `visitorId`                |
-| `traits.visitorId`  | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) Fingerprint `visitorId`                |
-| `traits.createdAt`  | [`result.firstSeenAt.subscription`](https://dev.fingerprint.com/docs/js-agent#firstseenat) - time of first visit |
-| `userId`            | `identify.userId` - your internal user ID                                                                        |
-| `traits`            | `identify.traits` - any traits you want to record                                                                |
+| Identify Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.identify`                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `anonymousId`       | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId`                |
+| `traits.visitorId`  | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId`                |
+| `traits.createdAt`  | [`result.firstSeenAt.subscription`](https://dev.fingerprint.com/docs/js-agent#firstseenat) - time of first visit   |
+| `userId`            | `identify.userId` - your internal user ID                                                                          |
+| `traits`            | `identify.traits` - any traits you want to record                                                                  |
 
 
 
