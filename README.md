@@ -30,104 +30,118 @@
 
 # Fingerprint Pro Segment Source Function
 
-Fingerprint provides a [Segment Source Function](https://Segment.com/docs/connections/functions/source-functions/) that can be configured to use with [Fingerprint Pro JS Agent](https://dev.fingerprint.com/docs/js-agent).
-It is possible to send events for Segment destinations using this repository and JS Agent only.
+This Segment [Source function](https://Segment.com/docs/connections/functions/source-functions/) allows you to use [Fingerprint Pro](https://fingerprint.com/) visitor identification data as a data source in Segment. The function receives the data through Fingerprint [webhooks](https://dev.fingerprint.com/docs/webhooks) and normalizes them into Segment [Specs](https://segment.com/docs/connections/spec/). Once your Fingerprint data is inside Segment, you can use it in any of your Segment destinations to detect suspicious activity, prevent fraud or personalize user experiences.
 
-Fingerprint Segment integration uses [Fingerprint Webhooks](https://dev.fingerprint.com/docs/webhooks) to send data to Segment servers.
+### Requirements and limitations
 
-> :warning: Mobile platforms are currently not supported. Please contact support if you need help.
+* You need to have the Fingerprint Pro [JavaScript agent](https://dev.fingerprint.com/docs/js-agent) installed on your website and configured to send data to Segment. Installing Segment on your website directly is not required. 
+* Mobile platforms are currently not supported. Reach out to our [support](https://fingerprint.com/support) if you have any questions.
 
 ## How to set up
 
-### Create a Segment Source Function
+### 1. Import the Fingerprint Segment Source Function
 
-1. Log in to your Segment account, go to **Connections**.
-2. Select **Catalog** > **Functions** > **Create Function** (or **New Function**).
-3. Select **Source**, click **Build**.
-4. Replace the source code with the [latest Fingerprint Segment source function](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js).
-5. Click **Configure**, and enter a descriptive name, such as "FPJS Source Function".
-Optionally you can put a description and logo of your choice. Click **Create Function**.
+1. Log in to your Segment account.
+2. Navigate to **Connections** > **Catalog** and switch to the **Functions** tab.
+3. Click **New Function**.
+4. Select **Source**, then click **Build**.
+5. Replace the source code with the [latest Fingerprint Segment source function](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/releases/latest/download/fingerprint-pro-segment-source-function.js).
+6. Click **Configure**, and enter a descriptive name, such as `Fingerprint Pro Source Function`.
+7. Optionally, you can add a description and logo of your choice.
+8. Click **Create Function**.
 
-The source function is successfully created!
+You have successfully created a Segment Source Function.
 
-### Create a Segment Source and connect it to the function
+### 2. Create a Segment Source connected to the Fingerprint Source function
 
-1. Log in to your Segment account, go to **Connections**.
-2. Select **Catalog** > **Functions**.
-3. Select the source function previously created.
-4. Select **Connect Source**.
-5. Put a descriptive name, such as "FPJS Source". You may optionally put labels of your choice.
-6. Click **Continue**.
-7. You will see the webhook URL. Don't worry about this for now.
-8. Click **Continue**.
-9. Click **Finish**.
+Continuing from the previous step (or if you have closed the browser tab, go to **Connections** > **Catalog** > **Functions** > **Fingerprint Pro Source Function**)
 
-The source is successfully created!
+1. Click **Connect Source**.
+2. Add a descriptive name, for example `Fingerprint Pro visitor identification events`. Optionally, you can put labels of your choice.
+3. Click **Continue**, then **Continue** again, a finally **Finish**.
 
-### Connect Segment Source with Fingerprint Account
+You have successfully created a Segment Source. The source overview page will show you the webhook URL. Keep it handy, you will need it in the next step.
 
-1. Log in to your Segment account, go to **Connections**.
-2. Select **Sources**, and select previously created source. You should see the details of the source, along with the webhook URL.
-3. Copy the webhook URL.
-4. Log in to your Fingerprint account.
-5. Go to **App Settings** > **Webhooks**.
-6. Click **+Add Webhook**.
-7. Paste the URL you copied earlier. Do not set authentication. Put a descriptive description, such as "Segment source".
-8. Click **Save**.
-9. Click **Send Test Event**.
-10. Sending the test event can take a minute or two.
+### 3. Configure a Fingerprint webhook to send data to Segment
 
-For every visitor identification event, Fingerprint will now send the identification result to your Segment Source function.
+1. Log in to your Fingerprint account.
+2. Go to **App Settings** > **Webhooks**.
+3. Click **Add Webhook**.
+4. Paste the webhook URL of your Source. (You can always find it in **Segment** > **Connections** > **Sources** > **Your Fingerprint Source** > **Overview** )
+5. Optionally, add a description, for example "Segment source". Do not set any authentication.
+6. Click **Save**.
+7. Click **Send Test Event** and wait for a confirmation that Segment successfully received the test event data. If you do not see the confirmation, check the webhook URL and try again. Sending the test event can take a minute or two.
 
-### Configure JS Agent
+You have successfully configured a Fingerprint webhook. For every visitor identification event, Fingerprint will now send the identification result to your Segment Source Function.
 
-The Segment integration is _not_ enabled by default. JS Agent must be configured explicitly to use the Segment Integration.
-Use the JS agent's `tag` property to enable your Segment integration. See more info about `tag` see the [JS agent API Reference](https://dev.fingerprint.com/docs/js-agent#tag).
+### 4. Configure the Fingerprint Pro JavaScript Agent on your website
 
-Add the `tag` field if it is not there. Then, add a field called `integrations`, and create a field called `segment` in it, like below:
+The Segment integration is _not_ enabled by default. Your website must have the Fingerprint JS Agent installed and configured explicitly to use the Segment Integration.
+
+1. If you haven't already, [install the Fingerprint JS Agent](https://dev.fingerprint.com/docs/js-agent) on your website, for example: 
+
+  ```html
+  <script>
+    // Load the JavaScript agent
+    const fpPromise = import('https://fpjscdn.net/v3/your-public-api-key')
+      .then(FingerprintJS => FingerprintJS.load({ endpoint: 'https://metrics.your-website.com'}))
+
+    // Analyze the visitor when necessary.
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => console.log(result.visitorId))
+  </script>
+  ```
+2. Insert a `tag.integrations.segment` object into the options of the JS agent's `get` method to enable your Segment integration. The Segment Source function will ignore identification events received from Fingerprint that do not include the `tag.integrations.segment` object. For more info about `tag` see the [JS agent API Reference](https://dev.fingerprint.com/docs/js-agent#tag).
+
 ```javascript
-fp.get({
-  tag: {
-    integrations: {
-      segment: {
-        // segment fields
-      }
+  fpPromise.then(fp =>
+    fp.get({
+      tag: {
+        integrations: {
+          segment: {
+            /* segment fields */
+          },
+        },
+      },
+    })
+  );
+  ```
+
+3. Inside the `segment` object, define [Segment Specs](https://segment.com/docs/connections/spec/), like below:
+
+  ```javascript
+  const segmentFields = {
+    skipIntegration: false,
+    identify: {
+      // ... identify spec fields
+    },
+    page: {
+      // ... page spec fields
+    },
+    track: {
+      // ... track spec fields
+    },
+    group: {
+      // ... group spec fields
     }
   }
-  // ... more fields
-})
-```
-Inside the `segment` object, define [Segment Specs](https://segment.com/docs/connections/spec/), like below:
+  ```
+  You can use `identify`, `page`, `group`, and `track` for corresponding Specs. You can use any or all specs in a single request, the Identify Spec is sent even when omitted. You can use `skipIntegration` for skipping the segment integration entirely.
 
-```javascript
-const segmentFields = {
-  skipIntegration: false,
-  identify: {
-    // ... identify spec fields
-  },
-  page: {
-    // ... page spec fields
-  },
-  track: {
-    // ... track spec fields
-  },
-  group: {
-    // ... group spec fields
-  }
-}
-```
-You may use `identify`, `page`, `group`, and `track` for corresponding Specs. 
-You can omit the Specs you don't need (exception: Identity Spec is still created when omitted). You can use `skipIntegration` field for skipping the segment integration entirely.
+  See [How to use](#how-to-use) for more details on each spec.
 
-### Setting Destinations
+### Receiving and using the data
 
-Now that the JS Agent and Segment Source are connected, the Specs should be flowing to 
-your segment account as your website gets visitors. Set up a destination to make use of flowing data, such as Google Analytics or others that suits
-your business needs the best. 
+Now that the JS Agent and Segment Source are connected, the Specs should be flowing to your segment account as visitors come your website and are identified by Fingerprint Pro. 
+
+You can debug the data coming in by going to **Connections** > **Sources** > **Your Fingerprint Source** > **Debugger**.
+Set up some [destinations](https://segment.com/docs/connections/destinations/catalog/#security-fraud) to use the data, for example, Google Analytics, Castle, Mixpanel, or others that suit your business needs the best.
 
 ## How to use
 
-The Segment Source function creates Specs based on the `tag.integration.segment` object.
+The Fingerprint Pro Segment Source function creates Specs based on the the [visitor identification result](https://dev.fingerprint.com/docs/js-agent#get-response) and the metadata you pass to the `tag.integration.segment` object. 
+
 
 <details>
 <summary>Full Example</summary>
@@ -213,64 +227,127 @@ fp.get({
 
 ### Identify Spec
 
-Identify call lets you tie a user to their actions and record traits about them. It includes a unique User ID and any optional traits you know about the user, like their email, name, and more.
+The [Identify Spec](https://segment.com/docs/connections/spec/identify/) lets you record who the visitor is and the traits you know about them. You can use the `segment.identify` pass your visitor metadata to Segment. This spec is always created based on the visitor identification `result`, even when you omit the `identify` field.
 
-[Identity Spec](https://segment.com/docs/connections/spec/identify/) is defined by the `identify` field, but it is _still_ created even when you omit the `identify` field.
+```javascript
+const segment = {
+  identify: {
+    userId: '123456',
+    traits: {
+      name: 'Jon Doe',
+    },
+  },
+}
+```
+  
+This is how each field in the Identify Spec is populated:
 
-- `anonymousId` is populated with the [`visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) generated by Fingerprint.
-- `userId` is populated with `identify.userId`.
-- `traits.visitorId` is populated with the visitor ID generated by Fingerprint.
-- `traits.createdAt` is populated with the `firstSeenAt.subscription` field of the webhook, which is [the time of the first visit of the visitor](https://dev.fingerprint.com/docs/useful-timestamps#definitions).
-- Can be extended by extending the `identify` field.
-- `traits` field can be extended by extending the `identify.traits` field.
+| Identify Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.identify`                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `anonymousId`       | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)                                        |
+| `traits.visitorId`  | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)                                        |
+| `traits.createdAt`  | [`result.firstSeenAt.subscription`](https://dev.fingerprint.com/docs/js-agent#firstseenat) - time of first visit |
+| `userId`            | `identify.userId` - your internal user ID                                                                        |
+| `traits`            | `identify.traits` - any traits you want to record                                                                |
+
+
 
 ### Page Spec
 
-The page call lets you record whenever a user sees a page of your website, along with any optional properties about the page
+The [Page Spec](https://segment.com/docs/connections/spec/page/) lets you record whenever a user sees a page of your website, along with any optional properties about the page. It is defined by the `page` field.
 
-[Page Spec](https://segment.com/docs/connections/spec/page/) is defined by the `page` field.
+```javascript
+const segment = {
+  page: {
+    name: 'Update Password',
+    properties: {
+      path: '/account/password',
+      referrer: '/account/home',
+    },
+    context: {
+      trial: true,
+    }
+  },
+}
+```
 
-- `anonymousId` is populated with the visitor ID generated by Fingerprint.
-- `userId` is populated with `identify.userId`.
-- `context.ip` is populated with IP address of the visitor.
-- `context.browserDetails` is populated with the browser details of the visitor, such as browser name, browser operating system, etc.
-- `context.incognito` is the boolean field for whether the page view was made in incognito or private mode.
-- `context.confidenceScore` is the confidence score of the identification, generated by Fingerprint.
-- `context.requestId` is the ID of the identification request to Fingerprint.
-- `properties.url` is the URL of the webpage that triggered the Fingerprint identification.
-- Can be extended by extending the `page` field.
-- `context` and `properties` fields can be extended by extending the `page.context`, `page.properties` fields, respectively.
+This is how each field in the Page Spec is populated:
+
+| Page Spec field           | Source field in Fingerprint Pro `result` or metadata passed to `segment`                                  |
+| ------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `anonymousId`             | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) - Fingerprint `visitorId`       |
+| `userId`                  | `identify.userId` - your internal user ID                                                                 |
+| `context.ip`              | [`result.ip`](https://dev.fingerprint.com/docs/js-agent#ip) - IP address                                  |
+| `context.browserDetails`  | [`result.browserDetails`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) |
+| `context.incognito`       | [`result.incognito`](https://dev.fingerprint.com/docs/js-agent#incognito) - Incognito mode                |
+| `context.confidenceScore` | [`result.confidenceScore`](https://dev.fingerprint.com/docs/js-agent#confidence) - Confidence score       |
+| `context.requestId`       | [`result.requestId`](https://dev.fingerprint.com/docs/js-agent#requestid) - ID of Fingerprint request     |
+| `properties.url`          | [`result.url`](https://dev.fingerprint.com/docs/webhooks#identification-webhook-object-format) - page URL |
+| `context`                 | `page.context` - any context you want to record                                                           |
+| `properties`              | `page.properties` - any properties you want to record                                                     |
+
+
 
 ### Track Spec
 
-The track call is how you record any actions your users perform, along with any properties that describe the action.
+The [Track Spec](https://segment.com/docs/connections/spec/track/) is how you record actions your users perform, along with any properties that describe the action. It is defined by the `track` field.
 
-[Track Spec](https://segment.com/docs/connections/spec/track/) is defined by the `track` field.
+```javascript
+const segment = {
+  track: {
+    event: 'Plan Updated',
+    properties: {
+      currency: 'USD',
+      value: '19.99'
+    }
+  },
+}
+```
 
-- `anonymousId` is populated with the visitor ID generated by Fingerprint.
-- `userId` is populated with `identify.userId`.
-- Can be extended by extending the `track` field.
+This is how each field in the Track Spec is populated:
 
-> :warning: Keep in mind that the `event` field is required for Track Spec. If `event` is not provided, Track Spec will not be created. Other Specs are still going to be created.
+| Track Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment.track` |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid)      |
+| `userId`         | `identify.userId` - your internal user ID                                      |
+| `event`          | `track.event` - the event you’re tracking, required                            |
+| `properties`     | `track.properties` - any properties you want to record                         |
+
+> :warning: The `event` field is required to create a Track Spec.
 
 ### Group Spec
 
-The group call is how you associate an individual user with a group—be it a company, organization, account, project, team or whatever other name you came up with for the same concept!
+The [Group Spec](https://segment.com/docs/connections/spec/group/) is how you associate an individual user with a group, for example, a company, organization, account, project, or team. It is defined by the `group` field.
 
-[Group Spec](https://segment.com/docs/connections/spec/group/) is defined by the `group` field.
+```javascript
+const segment = {
+  group: {
+    groupId: '0e8c78ea9d97a7b8185e8632',
+    traits: {
+      name: 'Fingerprint',
+      industry: 'Tech',
+      employees: 110,
+    },
+  },
+}
+```
 
-- `anonymousId` is populated with the visitor ID generated by Fingerprint.
-- `userId` is populated with `identify.userId`.
-- Can be extended by extending the `group` field.
+This is how each field in the Group Spec is populated:
 
-> :warning: Keep in mind that the `groupId` field is required for Group Spec. If `groupId` is not provided, Group Spec will not be created. Other Specs are still going to be created.
+| Group Spec field | Source field in Fingerprint Pro `result` or metadata passed to `segment`  |
+| ---------------- | ------------------------------------------------------------------------- |
+| `groupId`        | `group.groupId` - the group ID you’re tracking, required                  |
+| `traits`         | `group.traits` - any grouptraits you want to record                       |
+| `anonymousId`    | [`result.visitorId`](https://dev.fingerprint.com/docs/js-agent#visitorid) |
+| `userId`         | `identify.userId` - your internal user ID                                 |
+
+
+> :warning: The `groupId` field is required to create a Group Spec.
 
 ### Screen Spec
 
-The screen call lets you record whenever a user sees a screen, the mobile equivalent of page, in your mobile app, along with any properties about the screen
-
-[Screen Spec](https://segment.com/docs/connections/spec/screen/) is not supported.
+[Screen Spec](https://segment.com/docs/connections/spec/screen/) is currently not supported.
 
 ### Skipping the integration
 
-Set `skipIntegration` to `true` for preventing the source function to create any Specs. Defaults to `false`.
+Set `skipIntegration` to `true` to prevent the source function from creating any Specs. Defaults to `false`.
