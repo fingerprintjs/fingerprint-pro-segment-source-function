@@ -196,7 +196,7 @@ fp.get({
 
 ### Identify Spec
 
-The [Identify Spec](https://segment.com/docs/connections/spec/identify/) lets you record who the visitor is and the traits you know about them. You can use the `segment.identify` field to pass your visitor metadata to Segment. This spec is always created based on the visitor identification `result`, even when you omit the `identify` field.
+The [Identify Spec](https://segment.com/docs/connections/spec/identify/) lets you record who the visitor is and the traits you know about them. You can use the `segment.identify` field to pass your visitor metadata to Segment. This spec is always created based on the visitor identification result, even when you omit the `identify` field.
 
 ```javascript
 const segment = {
