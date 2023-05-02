@@ -34,7 +34,7 @@ jobs:
           mv coverage/lcov-report ./gh-pages/coverage
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@8904e58febc75bc9f8b0157ce696b940240008ef
+        uses: JamesIves/github-pages-deploy-action@ba1486788b0490a235422264426c45848eac35c6
         with:
           branch: gh-pages
           folder: gh-pages
