@@ -26,8 +26,8 @@ jobs:
         id: random-path-generator
       - name: Install dependencies
         run: |
-          npx playwright install
           yarn install
+          npx playwright install
       - name: Run test
         run:  yarn test:e2e
         env:
