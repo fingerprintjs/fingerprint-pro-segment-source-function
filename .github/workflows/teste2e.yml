@@ -40,6 +40,6 @@ jobs:
           token: ${{ secrets.GH_RELEASE_TOKEN }}
           status: ${{ job.status }}
           notification_title: "Segment E2E Test has {status_message}"
-          # notify_when: "failure" # TODO: Activate this after test the bot itself
+          # notify_when: "failure" # Possible values(can be an array of values or singular): success, failure, cancelled, skipped
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
