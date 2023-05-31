@@ -35,7 +35,7 @@ jobs:
           TEST_ID: ${{steps.random-path-generator.outputs.TEST_ID}}
       - name: Report Status
         if: always()
-        uses: ravsamhq/notify-slack-action@v1
+        uses: ravsamhq/notify-slack-action@0d9c6ff1de9903da88d24c0564f6e83cb28faca9
         with:
           status: ${{ job.status }}
           notification_title: "Segment E2E Test has {status_message}"
