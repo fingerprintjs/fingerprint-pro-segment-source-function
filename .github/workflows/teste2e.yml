@@ -33,3 +33,13 @@ jobs:
         env:
           TEST_CLIENT_DOMAIN: ${{secrets.TEST_CLIENT_DOMAIN}}
           TEST_ID: ${{steps.random-path-generator.outputs.TEST_ID}}
+      - name: Report Status
+        if: always()
+        uses: ravsamhq/notify-slack-action@v1
+        with:
+          token: ${{ secrets.GH_RELEASE_TOKEN }}
+          status: ${{ job.status }}
+          notification_title: "Segment E2E Test has {status_message}"
+          # notify_when: "failure" # TODO: Activate this after test the bot itself
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
