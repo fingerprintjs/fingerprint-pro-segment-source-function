@@ -20,8 +20,12 @@ jobs:
       - name: Build library
         run: yarn build
 
-      - name: Release
-        run: yarn release
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@91ab76a4a393a8d0c4739e9aea1818b56bc953ea
+        with:
+          extra_plugins: |
+            @semantic-release/exec@6.0.3
+            conventional-changelog-conventionalcommits@5.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
           HUSKY: 0
