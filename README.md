@@ -34,7 +34,15 @@ This Segment [Source function](https://Segment.com/docs/connections/functions/so
 
  <img src="resource/../resources/segment-overview.png" alt="Screenshot of Segment overview showing Fingerprint Pro as a data source">
 
-### ⚠️ Requirements and limitations
+## ⚠️ Requirements and limitations
+
+Please note that this library runs by Segment's custom JavaScript runtime. To test and build locally, this library requires these:
+
+- Node 18+
+- Typescript 4
+- Playwright (with a headless browser preferably chromium)
+
+To use this library:
 
 * You need to have the Fingerprint Pro [JavaScript agent](https://dev.fingerprint.com/docs/js-agent) installed on your website and configured to send data to Segment. Installing Segment on your website directly is not required. 
 * Mobile platforms are currently not supported. Reach out to our [support](https://fingerprint.com/support) if you have any questions.
@@ -321,3 +329,11 @@ This is how fields in the Group Spec are populated:
 ### Skipping the integration
 
 Set `skipIntegration` to `true` to prevent the source function from creating any Specs. Defaults to `false`.
+
+## Support
+
+To report problems, ask questions or provide feedback, please use [Issues](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/issues). If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](https://github.com/fingerprintjs/fingerprint-pro-segment-source-function/blob/main/LICENSE) file for more info.
