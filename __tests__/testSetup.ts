@@ -5,19 +5,13 @@ import * as page from '../src/handlers/pageHandler'
 import * as screen from '../src/handlers/screenHandler'
 
 function setupSegment() {
-  jest.mock('../src', () => {
-    const original = jest.requireActual('../src')
-
-    return {
-      __esModule: true,
-      ...original,
-      Segment: {
-        identify: jest.fn(() => null),
-        group: jest.fn(() => null),
-        track: jest.fn(() => null),
-        page: jest.fn(() => null),
-      },
-    }
+  Object.defineProperty(global, 'Segment', {
+    value: {
+      identify: jest.fn(() => null),
+      group: jest.fn(() => null),
+      track: jest.fn(() => null),
+      page: jest.fn(() => null),
+    },
   })
   jest.spyOn(Segment, 'identify')
   jest.spyOn(Segment, 'group')
