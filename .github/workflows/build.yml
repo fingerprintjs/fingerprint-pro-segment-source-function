@@ -2,7 +2,6 @@
 name: Lint, build and test
 on:
   pull_request:
-  workflow_dispatch:
 
 jobs:
   build:
