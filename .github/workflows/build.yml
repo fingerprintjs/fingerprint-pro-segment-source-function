@@ -2,6 +2,7 @@
 name: Lint, build and test
 on:
   pull_request:
+
 jobs:
   build:
     name: Lint, build and test
@@ -18,6 +19,9 @@ jobs:
             !**/dist/node_modules
           key: nodemodules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: nodemodules-
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
       - name: Install Node packages
         run: yarn install
       - name: Lint
