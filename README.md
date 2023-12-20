@@ -36,7 +36,7 @@ This Segment [Source function](https://Segment.com/docs/connections/functions/so
 
 ## ⚠️ Requirements and limitations
 
-Please note that this library runs by Segment's custom JavaScript runtime. To test and build locally, this library requires these:
+When deployed, the source function runs inside Segment's custom [JavaScript runtime](https://segment.com/docs/connections/functions/source-functions/#runtime-and-dependencies). To build and test the source function locally, you need: 
 
 - Node 18+
 - Typescript 4
