@@ -48,7 +48,7 @@ When deployed, the source function runs inside Segment's custom [JavaScript runt
 
 - Node 18+
 - Typescript 4
-- Playwright (with a headless browser preferably chromium)
+- Playwright for end-to-end tests
 
 ## How to set up
 
