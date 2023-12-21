@@ -47,7 +47,7 @@ This Segment [Source function](https://Segment.com/docs/connections/functions/so
 When deployed, the source function runs inside Segment's custom [JavaScript runtime](https://segment.com/docs/connections/functions/source-functions/#runtime-and-dependencies). To build and test the source function locally, you need: 
 
 - Node 18+
-- Typescript 4
+- Typescript 4+
 - Playwright for end-to-end tests
 
 ## How to set up
