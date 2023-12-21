@@ -40,7 +40,6 @@ This Segment [Source function](https://Segment.com/docs/connections/functions/so
 
 
 - You need to have the Fingerprint Pro [JavaScript agent](https://dev.fingerprint.com/docs/js-agent) installed on your website and configured to send data to Segment. Installing Segment on your website directly is not required.
-- Webhook setup on Fingerprint dashboard that uses the url provided by Segment Source Function
 - Mobile platforms are currently not supported. Reach out to our [support](https://fingerprint.com/support) if you have any questions.
 
 ### Development Requirements
