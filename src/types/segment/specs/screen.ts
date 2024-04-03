@@ -3,7 +3,7 @@ declare type ScreenProperties = {
 }
 export declare type SegmentSpecScreen<
   CustomProperties extends object = {},
-  CustomObjectBodyProperties extends object = {}
+  CustomObjectBodyProperties extends object = {},
 > = {
   properties?: ScreenProperties & CustomProperties
 } & CustomObjectBodyProperties

@@ -18,7 +18,7 @@ declare type GroupTraits = {
 
 export declare type SegmentSpecGroup<
   CustomTraits extends object = {},
-  CustomObjectBodyProperties extends object = {}
+  CustomObjectBodyProperties extends object = {},
 > = {
   groupId: MaybeNullOrUndefined<string>
   traits?: GroupTraits & CustomTraits

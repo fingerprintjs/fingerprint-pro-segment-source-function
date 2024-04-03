@@ -7,7 +7,7 @@ declare type TrackProperties = {
 }
 export declare type SegmentSpecTrack<
   CustomProperties extends object = {},
-  CustomObjectBodyProperties extends object = {}
+  CustomObjectBodyProperties extends object = {},
 > = {
   event: MaybeNullOrUndefined<string>
   properties?: TrackProperties & CustomProperties

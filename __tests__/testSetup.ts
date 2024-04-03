@@ -5,7 +5,7 @@ import * as page from '../src/handlers/pageHandler'
 import * as screen from '../src/handlers/screenHandler'
 
 function setupSegment() {
-  Object.defineProperty(global, 'Segment', {
+  Object.defineProperty(globalThis, 'Segment', {
     value: {
       identify: jest.fn(() => null),
       group: jest.fn(() => null),
