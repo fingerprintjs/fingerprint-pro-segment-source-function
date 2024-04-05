@@ -10,7 +10,7 @@ declare type SegmentPageProperties = {
 
 export declare type SegmentSpecPage<
   CustomProperties extends object = {},
-  CustomObjectBodyProperties extends object = {}
+  CustomObjectBodyProperties extends object = {},
 > = {
   category?: string
   name?: string
