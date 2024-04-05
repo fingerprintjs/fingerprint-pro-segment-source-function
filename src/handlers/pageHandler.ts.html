@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/handlers/requestHandler.ts</title>
+    <title>Code coverage report for src/handlers/pageHandler.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/handlers</a> requestHandler.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/handlers</a> pageHandler.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
@@ -57,7 +57,7 @@
         <template id="filterTemplate">
             <div class="quiet">
                 Filter:
-                <input oninput="onInput()" type="search" id="fileSearch">
+                <input type="search" id="fileSearch">
             </div>
         </template>
     </div>
@@ -92,63 +92,81 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { handleIdentify } from './identifyHandler'
-import { handlePage } from './pageHandler'
-import { handleTrack } from './trackHandler'
-import { handleGroup } from './groupHandler'
-import { FPJSSegmentIntegrationBody } from '../types'
-import { SegmentSourceRequest } from '../types/segment/request'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FPJSSegmentIntegrationBody, MaybeNullOrUndefined as NullOrUn } from '../types'
+import { SegmentSpecPage } from '../types/segment/specs/page'
+import '../types/segment'
+import { SegmentSpecWithUserId } from '../types/segment/utils/id'
 &nbsp;
-export function handleRequest(request: SegmentSourceRequest) {
-  const body = request.json()
-  const { tag } = body as FPJSSegmentIntegrationBody
-  const payload = tag?.integrations?.segment
-  if (!payload) {
+export function handlePage(
+  page: NullOrUn&lt;SegmentSpecPage&lt;{}, { context?: object }&gt;&gt;,
+  userId: NullOrUn&lt;SegmentSpecWithUserId['userId']&gt;,
+  body: FPJSSegmentIntegrationBody
+) {
+  if (!page) {
     return
   }
-&nbsp;
-  if (payload.skipIntegration) {
-    return
+  try {
+    Segment.page({
+      ...page,
+      anonymousId: body.visitorId,
+      userId,
+      context: {
+        ip: body.ip,
+        browserDetails: body.browserDetails,
+        incognito: body.incognito,
+        confidenceScore: body.confidence?.score,
+        requestId: body.requestId,
+        ...page?.context,
+      },
+      properties: {
+        url: body.url,
+        ...page?.properties,
+      },
+    })
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    console.log('error:pageHandler', e)</span>
   }
-&nbsp;
-  const { identify, page, track, group } = payload
-  const userId = identify?.userId
-&nbsp;
-  handleIdentify(identify, userId, body)
-  handlePage(page, userId, body)
-  handleTrack(track, userId, body)
-  handleGroup(group, userId, body)
-  // uncomment below when mobile is supported
-  // handleScreen(screen, userId, body)
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -157,7 +175,7 @@ export function handleRequest(request: SegmentSourceRequest) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-01T15:11:50.373Z
+                at 2024-04-05T09:24:12.280Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
